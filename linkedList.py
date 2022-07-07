@@ -5,23 +5,28 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
+        self.nodeCount=0
 
     def insertLast(self,value):
         newnode = Node(value)
         if self.head==None:
             self.head = newnode
+            self.nodeCount+=1
         else:
             temp = self.head
             while(temp.next!=None):
                 temp = temp.next
             temp.next = newnode
+            self.nodeCount+=1
     def insertFirst(self,value):
         newnode = Node(value)
         if self.head==None:
             self.head=newnode
+            self.nodeCount+=1
         else:
             newnode.next = self.head
             self.head = newnode
+            self.nodeCount+=1
     def displayList(self):
         if(self.head==None):
             print("List is empty!")
@@ -36,16 +41,19 @@ class LinkedList:
             print("List is empty!")
         else:
             self.head = self.head.next
+            self.nodeCount-=1
     def deleteLast(self):
         if self.head == None:
             print("List is empty!")
         elif self.head.next==None:
             self.head=None
+            self.nodeCount-=1
         else:
             temp = self.head
             while(temp.next.next!=None):
                 temp = temp.next
             temp.next = None
+            self.nodeCount-=1
     def searchelement(self,element):
         if self.head == None:
             print("list is empty!")
@@ -89,3 +97,4 @@ if __name__=="__main__":
    mylist.searchelement(20)
    print("search for element which is not present in linked-list")
    mylist.searchelement(40)
+   print("node count: ",mylist.nodeCount)
